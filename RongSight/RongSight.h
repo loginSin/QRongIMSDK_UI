@@ -17,6 +17,15 @@ FOUNDATION_EXPORT const unsigned char RongSightVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import
 // <RongSight/PublicHeader.h>
 
+#if __has_include(<RongSight/RCSightViewController.h>)
+
 #import <RongSight/RCSightViewController.h>
 #import <RongSight/RCSightPlayerController.h>
 #import <RongSight/RCSightPlayerOverlay.h>
+
+#else
+
+#import "RCSightViewController.h"
+#import "RCSightPlayerController.h"
+#import "RCSightPlayerOverlay.h"
+#endif
