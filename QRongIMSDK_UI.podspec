@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Sticker' do |rs|
-    rs.source_files = 'RongSticker/**/*.{h,m}'
+    rs.source_files = 'RongSticker/**/*.{h,m,c}'
     rs.dependency 'QRongIMSDK_UI/IMKit'
   end
 
