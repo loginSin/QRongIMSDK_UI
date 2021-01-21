@@ -9,12 +9,6 @@ Pod::Spec.new do |s|
 
   s.description  = <<-DESC
                    RongCloud IM SDK for iOS.
-
-
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
                    DESC
 
 
@@ -35,12 +29,12 @@ Pod::Spec.new do |s|
 
   s.subspec 'Sticker' do |rs|
     rs.source_files = 'RongSticker/**/*.{h,m}'
-    rs.dependency 'IMKit'
+    rs.dependency 'QRongIMSDK_UI/IMKit'
   end
 
   s.subspec 'Sight' do |st|
     st.source_files = 'RongSight/**/*.{h,m}'
-    st.dependency 'IMKit'
+    st.dependency 'QRongIMSDK_UI/IMKit'
   end
 
 end
