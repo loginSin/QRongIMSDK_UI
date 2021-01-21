@@ -6,7 +6,6 @@
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
 
-#import <RongIMKit/RongIMKit.h>
 
 @class RCSightMessageProgressView;
 @interface RCSightMessageCell : RCMessageCell
