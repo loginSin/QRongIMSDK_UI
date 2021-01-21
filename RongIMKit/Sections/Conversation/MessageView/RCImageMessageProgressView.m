@@ -49,7 +49,7 @@
 - (void)updateProgress:(NSInteger)progress {
     NSString *numStr = [NSString stringWithFormat:@"%ld%%", (long)progress];
     [self.label setText:numStr];
-    // DebugLog(@"-----###%@",self.label.text);
+    // NSLog(@"-----###%@",self.label.text);
 }
 - (void)startAnimating {
     if (self.indicatorView.isAnimating == NO) {

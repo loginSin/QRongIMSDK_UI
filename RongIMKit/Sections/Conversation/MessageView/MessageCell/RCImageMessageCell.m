@@ -129,7 +129,7 @@
             self.pictureView.frame = self.messageContentView.bounds;
         }
     } else {
-        DebugLog(@"[RongIMKit]: RCMessageModel.content is NOT RCImageMessage object");
+        NSLog(@"[RongIMKit]: RCMessageModel.content is NOT RCImageMessage object");
     }
 }
 
@@ -156,7 +156,7 @@
     RCMessageCellNotificationModel *notifyModel = notification.object;
     NSInteger progress = notifyModel.progress;
     if (self.model.messageId == notifyModel.messageId) {
-        DebugLog(@"messageCellUpdateSendingStatusEvent >%@ ", notifyModel.actionName);
+        NSLog(@"messageCellUpdateSendingStatusEvent >%@ ", notifyModel.actionName);
         if ([notifyModel.actionName isEqualToString:CONVERSATION_CELL_STATUS_SEND_BEGIN]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.pictureView addSubview:_progressView];

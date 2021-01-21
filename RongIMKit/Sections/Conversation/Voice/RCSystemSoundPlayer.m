@@ -111,7 +111,7 @@ static void playSoundEnd(SystemSoundID mySSID, void *myself) {
     
 
     if (nil != err) {
-        DebugLog(@"[RongIMKit]: Exception is thrown when setting audio session");
+        NSLog(@"[RongIMKit]: Exception is thrown when setting audio session");
         self.completion(NO);
         return;
     }
@@ -125,7 +125,7 @@ static void playSoundEnd(SystemSoundID mySSID, void *myself) {
         OSStatus error =
             AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:_soundFilePath], &_soundId);
         if (error != kAudioServicesNoError) { //获取的声音的时候，出现错误
-            DebugLog(@"[RongIMKit]: Exception is thrown when creating system sound ID");
+            NSLog(@"[RongIMKit]: Exception is thrown when creating system sound ID");
             self.completion(NO);
             return;
         }
@@ -144,7 +144,7 @@ static void playSoundEnd(SystemSoundID mySSID, void *myself) {
             return;
         }
     } else {
-        DebugLog(@"[RongIMKit]: Not found the related sound resource file in RongCloud.bundle");
+        NSLog(@"[RongIMKit]: Not found the related sound resource file in RongCloud.bundle");
         self.completion(NO);
         return;
     }

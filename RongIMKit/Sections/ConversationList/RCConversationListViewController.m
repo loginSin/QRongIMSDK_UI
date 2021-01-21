@@ -243,7 +243,7 @@
             [self updateEmptyConversationView];
         }
     } else {
-        DebugLog(@"editingStyle %ld is unsupported.", (long)editingStyle);
+        NSLog(@"editingStyle %ld is unsupported.", (long)editingStyle);
     }
 }
 

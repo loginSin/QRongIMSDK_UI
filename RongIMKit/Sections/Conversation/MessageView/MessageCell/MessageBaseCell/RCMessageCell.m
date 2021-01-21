@@ -92,7 +92,7 @@ NSString *const KNotificationMessageBaseCellUpdateCanReceiptStatus =
         }
     }
 
-    // DebugLog(@"%s", __FUNCTION__);
+    // NSLog(@"%s", __FUNCTION__);
     //如果是客服，更换默认头像
     if (ConversationType_CUSTOMERSERVICE == model.conversationType) {
         if (model.messageDirection == MessageDirection_RECEIVE) {
@@ -526,7 +526,7 @@ NSString *const KNotificationMessageBaseCellUpdateCanReceiptStatus =
 - (void)messageCellUpdateSendingStatusEvent:(NSNotification *)notification {
     RCMessageCellNotificationModel *notifyModel = notification.object;
     if (self.model.messageId == notifyModel.messageId) {
-        DebugLog(@"messageCellUpdateSendingStatusEvent >%@ ", notifyModel.actionName);
+        NSLog(@"messageCellUpdateSendingStatusEvent >%@ ", notifyModel.actionName);
         if ([notifyModel.actionName isEqualToString:CONVERSATION_CELL_STATUS_SEND_BEGIN]) {
             self.model.sentStatus = SentStatus_SENDING;
             [self updateStatusContentView:self.model];
@@ -710,7 +710,7 @@ NSString *const KNotificationMessageBaseCellUpdateCanReceiptStatus =
 }
 
 - (void)didTapMessageContentView{
-    DebugLog(@"%s", __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
     if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
         [self.delegate didTapMessageCell:self.model];
     }

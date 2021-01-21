@@ -219,7 +219,7 @@
                     weakSelf.gifImageView.animatedImage = gifImage;
                 }
             } else {
-                DebugLog(@"[RongIMKit]: RCMessageModel.content is NOT RCGIFMessage object");
+                NSLog(@"[RongIMKit]: RCMessageModel.content is NOT RCGIFMessage object");
             }
         });
     });
@@ -230,7 +230,7 @@
     RCMessageCellNotificationModel *notifyModel = notification.object;
     NSInteger progress = notifyModel.progress;
     if (self.model.messageId == notifyModel.messageId) {
-        DebugLog(@"messageCellUpdateSendingStatusEvent >%@ ", notifyModel.actionName);
+        NSLog(@"messageCellUpdateSendingStatusEvent >%@ ", notifyModel.actionName);
         if ([notifyModel.actionName isEqualToString:CONVERSATION_CELL_STATUS_SEND_BEGIN]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.gifImageView addSubview:_progressView];

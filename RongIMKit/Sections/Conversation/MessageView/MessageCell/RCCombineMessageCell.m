@@ -177,7 +177,7 @@
 - (void)longPressed:(id)sender {
     UILongPressGestureRecognizer *press = (UILongPressGestureRecognizer *)sender;
     if (press.state == UIGestureRecognizerStateEnded) {
-        DebugLog(@"long press end");
+        NSLog(@"long press end");
         return;
     } else if (press.state == UIGestureRecognizerStateBegan) {
         [self.delegate didLongTouchMessageCell:self.model inView:self.backView];

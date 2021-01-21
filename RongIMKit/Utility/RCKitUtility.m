@@ -489,7 +489,7 @@
 
 + (void)openURLInSafariViewOrWebView:(NSString *)url base:(UIViewController *)viewController {
     if (!url || url.length == 0) {
-        DebugLog(@"[RongIMKit] : Push to web Page url is nil");
+        NSLog(@"[RongIMKit] : Push to web Page url is nil");
         return;
     }
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -938,7 +938,7 @@
 
 + (NSString *)__formatDiscussionNotificationMessageContent:(RCDiscussionNotificationMessage *)discussionNotification {
     if (nil == discussionNotification) {
-        DebugLog(@"[RongIMKit] : No userInfo in cache & db");
+        NSLog(@"[RongIMKit] : No userInfo in cache & db");
         return nil;
     }
     NSArray *operatedIds = nil;

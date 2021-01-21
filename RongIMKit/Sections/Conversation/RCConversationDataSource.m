@@ -118,7 +118,7 @@ static BOOL msgRoamingServiceAvailable = YES;
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:chatVC.conversationDataRepository.count - 1 inSection:0];
                     if ([chatVC.conversationMessageCollectionView numberOfItemsInSection:0] !=
                         chatVC.conversationDataRepository.count - 1) {
-                        DebugLog(@"Error, datasource and collectionview are inconsistent!!");
+                        NSLog(@"Error, datasource and collectionview are inconsistent!!");
                         [chatVC.conversationMessageCollectionView reloadData];
                         return;
                     }
@@ -362,7 +362,7 @@ static BOOL msgRoamingServiceAvailable = YES;
                 weakSelf.isIndicatorLoading = NO;
             });
 
-            DebugLog(@"load remote history message failed(%ld)", (long)status);
+            NSLog(@"load remote history message failed(%ld)", (long)status);
         }];
 }
 
@@ -508,7 +508,7 @@ static BOOL msgRoamingServiceAvailable = YES;
             [self.chatVC.conversationMessageCollectionView setCollectionViewLayout:layout];
         }
     } @catch (NSException *except) {
-        DebugLog(@"----handleMessagesAfterLoadMore %@", except.description);
+        NSLog(@"----handleMessagesAfterLoadMore %@", except.description);
     }
 }
 
