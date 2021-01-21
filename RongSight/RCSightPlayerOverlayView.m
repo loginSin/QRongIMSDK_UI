@@ -7,7 +7,7 @@
 //
 
 #import "RCSightPlayerOverlayView.h"
-#import <RongIMKit/RCKitCommonDefine.h>
+#import "RongIMKitHeader.h"
 
 @interface RCSightPlayerOverlayView ()
 

@@ -8,7 +8,7 @@
 
 #import "RCStickerDownloadView.h"
 #import "RCStickerUtility.h"
-#import <RongIMKit/RCKitCommonDefine.h>
+#import "RongIMKitHeader.h"
 #define dispatch_main_async_safe(block)                                                                                \
     if ([NSThread isMainThread]) {                                                                                     \
         block();                                                                                                       \

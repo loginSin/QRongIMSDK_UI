@@ -11,7 +11,7 @@
 #import "RCSightProgressView.h"
 #import <RongIMLib/RongIMLib.h>
 #import "RCDownloadHelper.h"
-#import <RongIMKit/RCKitCommonDefine.h>
+#import "RongIMKitHeader.h"
 
 // AVPlayerItem's status property
 #define STATUS_KEYPATH @"status"

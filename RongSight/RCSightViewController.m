@@ -16,7 +16,7 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreMotion/CoreMotion.h>
 #import <Photos/Photos.h>
-#import <RongIMKit/RCKitCommonDefine.h>
+#import "RongIMKitHeader.h"
 #define ActionBtnSize 120
 #define BottomSpace 10
 #define OKBtnSize 74

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RongIMKit/RongIMKit.h>
+#import "RongIMKitHeader.h"
 
 @interface RCStickerPackageTabSource : NSObject <RCEmoticonTabSource>
 
