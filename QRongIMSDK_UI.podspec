@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.subspec 'IMKit' do |kit|
-    kit.resources = "Resources/*.*"
+    kit.resources = "Resource/*.*"
     kit.source_files = 'RongIMKit/**/*.{h,m,c}'
     kit.dependency 'RongCloudIM/IMLib','5.0.0'
   end
