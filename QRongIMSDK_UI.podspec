@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "loginSin"
   s.platform     = :ios, "8.0"
   # s.source       = { :http => "https://downloads.rongcloud.cn/QRongIM.zip" }
-  s.source           = { :git => 'git@gitlab2.rongcloud.net:qixinbing/qrongimsdk_ui.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://gitlab2.rongcloud.net/qixinbing/qrongimsdk_ui.git', :tag => s.version.to_s }
   s.requires_arc = true
 
   s.subspec 'IMKit' do |kit|
