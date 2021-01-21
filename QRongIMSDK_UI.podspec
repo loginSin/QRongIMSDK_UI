@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   s.subspec 'IMKit' do |kit|
     kit.resources = "Resources/*.*"
     kit.source_files = 'RongIMKit/**/*.{h,m,c}'
-    kit.dependency 'RongCloudIM/IMLib'
+    kit.dependency 'RongCloudIM/IMLib','5.0.0'
   end
 
   s.subspec 'Sticker' do |rs|
