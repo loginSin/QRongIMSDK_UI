@@ -459,7 +459,7 @@
                 [self.mentionedRangeInfoList removeAllObjects];
             }
         }
-        DebugLog(@"回车调用 inputTextViewDidChange");
+        NSLog(@"回车调用 inputTextViewDidChange");
         return NO;
     }
 
@@ -704,7 +704,7 @@
 }
 
 - (void)rcInputBar_didReceiveKeyboardWillShowNotification:(NSNotification *)notification {
-    DebugLog(@"%s", __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
     //textViewBeginEditing 是在 inputTextView 代理 textViewShouldBeginEditing 中赋值
     //此判断是避免会话页面其他输入框的响应导致会话输入框弹起
     if (self.inputContainerView.textViewBeginEditing) {
@@ -741,7 +741,7 @@
 }
 
 - (void)rcInputBar_didReceiveKeyboardWillHideNotification:(NSNotification *)notification {
-    DebugLog(@"%s", __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
     if (self.currentBottomBarStatus == KBottomBarKeyboardStatus) {
         [self animationLayoutBottomBarWithStatus:KBottomBarDefaultStatus animated:NO];
     }

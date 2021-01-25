@@ -54,7 +54,7 @@ static RCVoiceRecorder *rcHQVoiceRecorderHandler = nil;
 
             rcVoiceRecorderHandler.recordTempFileURL =
                 [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"tempAC.wav"]];
-            DebugLog(@"[RongExtensionKit]: Using File called: %@", rcVoiceRecorderHandler.recordTempFileURL);
+            NSLog(@"[RongExtensionKit]: Using File called: %@", rcVoiceRecorderHandler.recordTempFileURL);
         }
         return rcVoiceRecorderHandler;
     }
@@ -72,7 +72,7 @@ static RCVoiceRecorder *rcHQVoiceRecorderHandler = nil;
             };
             rcHQVoiceRecorderHandler.recordTempFileURL =
                 [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"HQTempAC.m4a"]];
-            DebugLog(@"[RongExtensionKit]: Using File called: %@", rcHQVoiceRecorderHandler.recordTempFileURL);
+            NSLog(@"[RongExtensionKit]: Using File called: %@", rcHQVoiceRecorderHandler.recordTempFileURL);
         }
         return rcHQVoiceRecorderHandler;
     }
@@ -96,10 +96,10 @@ static RCVoiceRecorder *rcHQVoiceRecorderHandler = nil;
 
     BOOL isRecord = NO;
     isRecord = [self.recorder prepareToRecord];
-    DebugLog(@"[RongExtensionKit]: prepareToRecord is %@", isRecord ? @"success" : @"failed");
+    NSLog(@"[RongExtensionKit]: prepareToRecord is %@", isRecord ? @"success" : @"failed");
 
     isRecord = [self.recorder record];
-    DebugLog(@"[RongExtensionKit]: record is %@", isRecord ? @"success" : @"failed");
+    NSLog(@"[RongExtensionKit]: record is %@", isRecord ? @"success" : @"failed");
     self.isRecording = self.recorder.isRecording;
     return isRecord;
 }

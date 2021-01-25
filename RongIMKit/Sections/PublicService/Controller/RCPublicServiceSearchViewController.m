@@ -45,7 +45,7 @@
 #pragma mark – Private Methods
 
 - (void)onSearchItemTapped {
-    DebugLog(@"taped");
+    NSLog(@"taped");
     [self startSearch];
 }
 - (void)startSearch {

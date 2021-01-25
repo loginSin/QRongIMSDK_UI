@@ -223,7 +223,7 @@
       
     NSDataDetector *dataDetector = [[NSDataDetector alloc] initWithTypes:self.textCheckingTypes error:&error];
     if (error != nil) {
-        DebugLog(@"data detector error %@", error.localizedDescription);
+        NSLog(@"data detector error %@", error.localizedDescription);
         [super setText:self.originalString];
         return;
     }

@@ -29,7 +29,7 @@
 #if DEBUG
 #define CHECK_FOR_EGOCACHE_PLIST()                                                                                     \
     if ([key isEqualToString:@"RCloudCache.plist"]) {                                                                  \
-        DebugLog(@"RCloudCache.plist is a reserved key and can not be modified.");                                     \
+        NSLog(@"RCloudCache.plist is a reserved key and can not be modified.");                                     \
         return;                                                                                                        \
     }
 #else
@@ -139,7 +139,7 @@ static RCloudCache *__instance;
 
 - (void)removeItemFromCache:(NSString *)key {
     if (!key) {
-        DebugLog(@"removeItemFromCache key is nil");
+        NSLog(@"removeItemFromCache key is nil");
         return;
     }
     NSString *cachePath = cachePathForKey(key);

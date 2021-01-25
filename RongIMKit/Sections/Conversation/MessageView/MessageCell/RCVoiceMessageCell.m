@@ -129,7 +129,7 @@ static long s_messageId = 0;
     if (voiceMessage) {
         self.voiceDurationLabel.text = [NSString stringWithFormat:@"%ld''", voiceMessage.duration];
     } else {
-        DebugLog(@"[RongIMKit]: RCMessageModel.content is NOT RCHQVoiceMessage object");
+        NSLog(@"[RongIMKit]: RCMessageModel.content is NOT RCHQVoiceMessage object");
     }
 }
 
@@ -296,7 +296,7 @@ static long s_messageId = 0;
         }
         s_messageId = self.model.messageId;
     } else {
-        DebugLog(@"[RongIMKit]: RCVoiceMessage.voiceData is NULL");
+        NSLog(@"[RongIMKit]: RCVoiceMessage.voiceData is NULL");
     }
 }
 
@@ -322,7 +322,7 @@ static long s_messageId = 0;
  *  Implement the animation operation
  */
 - (void)scheduleAnimationOperation {
-    DebugLog(@"%s", __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
 
     self.animationIndex++;
     NSString *playingIndicatorIndex;
@@ -331,7 +331,7 @@ static long s_messageId = 0;
     } else {
         playingIndicatorIndex = [NSString stringWithFormat:@"from_voice_%d", (self.animationIndex % 4)];
     }
-    DebugLog(@"playingIndicatorIndex > %@", playingIndicatorIndex);
+    NSLog(@"playingIndicatorIndex > %@", playingIndicatorIndex);
     self.playVoiceView.image = RCResourceImage(playingIndicatorIndex);
 }
 

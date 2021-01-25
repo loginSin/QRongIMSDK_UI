@@ -68,7 +68,7 @@ static int rc_currentSelectIndexPage;
         rc_currentSelectIndexPage = 0;
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         NSString *bundlePath = [resourcePath stringByAppendingPathComponent:@"Emoji.plist"];
-        DebugLog(@"Emoji.plist > %@", bundlePath);
+        NSLog(@"Emoji.plist > %@", bundlePath);
         self.faceEmojiArray = [[NSArray alloc] initWithContentsOfFile:bundlePath];
         self.emojiLoadedPage = 0;
 
@@ -336,7 +336,7 @@ static int rc_currentSelectIndexPage;
     [self.tabbarView showEmotion:rc_currentSelectIndexPackage];
     _preSelectEmoticonPackageIndex = rc_currentSelectIndexPackage;
     [pageCtrl setCurrentPage:selectIndex];
-    DebugLog(@"%d/%d", rc_currentSelectIndexPage, rc_currentSelectIndexPackage);
+    NSLog(@"%d/%d", rc_currentSelectIndexPage, rc_currentSelectIndexPackage);
 }
 
 #pragma mark - RCEmojiTabViewDelegate

@@ -174,7 +174,7 @@
     }else if(textMessage){
         self.textLabel.text = textMessage.content;
     }else{
-        DebugLog(@"[RongIMKit]: RCMessageModel.content is NOT RCTextMessage object");
+        NSLog(@"[RongIMKit]: RCMessageModel.content is NOT RCTextMessage object");
     }
     
     CGSize labelSize = [RCTextMessageCell getTextSize:self.model];//textlabelsize

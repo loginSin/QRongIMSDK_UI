@@ -95,7 +95,7 @@
 
 - (void)attributedLabel:(RCAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber {
     if (!phoneNumber) {
-        DebugLog(@"didSelectLinkWithPhoneNumber phoneNumber 是 nil");
+        NSLog(@"didSelectLinkWithPhoneNumber phoneNumber 是 nil");
         return;
     }
     NSString *number = [@"tel://" stringByAppendingString:phoneNumber];

@@ -79,13 +79,13 @@
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-     DebugLog(@"%s, %@", __FUNCTION__, textView);
+     NSLog(@"%s, %@", __FUNCTION__, textView);
     self.textViewBeginEditing = YES;
     return YES;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    DebugLog(@"%s, %@", __FUNCTION__, textView.text);
+    NSLog(@"%s, %@", __FUNCTION__, textView.text);
     self.textViewBeginEditing = NO;
     // filter the space
 }
