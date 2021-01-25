@@ -94,7 +94,7 @@
 
 - (void)beginFetchPoisOfCurrentLocation {
     if (!self.completion) {
-        NSLog(@"请先使用函数setOnPoiSearchResult来设置POI搜索结果的回调block");
+        DebugLog(@"请先使用函数setOnPoiSearchResult来设置POI搜索结果的回调block");
         return;
     }
 }
@@ -132,7 +132,7 @@
         [geocoder reverseGeocodeLocation:location
                        completionHandler:^(NSArray *placemarks, NSError *error) {
                            //        for (CLPlacemark *placemark in placemarks) {
-                           //            NSLog(@"%@", [placemark description]);
+                           //            DebugLog(@"%@", [placemark description]);
                            //        }
                            if (placemarks.count && weakSelf.completion) {
                                weakSelf.completion(placemarks, YES, NO, nil);

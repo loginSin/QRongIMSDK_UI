@@ -113,7 +113,7 @@
         self.locationNameLabel.frame = CGRectMake(0, self.pictureView.frame.size.height - 25,self.pictureView.frame.size.width, 25);
         [self setMaskImage:[RCMessageCellTool getDefaultMessageCellBackgroundImage:self.model]];
     } else {
-        NSLog(@"[RongIMKit]: RCMessageModel.content is NOT RCLocationMessage object");
+        DebugLog(@"[RongIMKit]: RCMessageModel.content is NOT RCLocationMessage object");
     }
     
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.locationNameLabel.bounds

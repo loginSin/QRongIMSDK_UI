@@ -97,11 +97,11 @@
 
 #pragma mark - RCVoiceRecorderDelegate
 - (void)RCVoiceAudioRecorderDidFinishRecording:(BOOL)success {
-    NSLog(@"%s: %d", __FUNCTION__, success);
+    DebugLog(@"%s: %d", __FUNCTION__, success);
 }
 
 - (void)RCVoiceAudioRecorderEncodeErrorDidOccur:(NSError *)error {
-    NSLog(@"%s", __FUNCTION__);
+    DebugLog(@"%s", __FUNCTION__);
 }
 
 #pragma mark - Private Methods

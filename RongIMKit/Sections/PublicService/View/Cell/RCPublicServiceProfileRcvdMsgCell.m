@@ -59,7 +59,7 @@
     [self.contentView addSubview:self.switcher];
 
     CGRect frame = self.contentView.frame;
-    NSLog(@"frame size is %f, %f", frame.size.width, frame.size.height);
+    DebugLog(@"frame size is %f, %f", frame.size.width, frame.size.height);
 }
 
 - (void)switchAction:(id)sender {
@@ -75,7 +75,7 @@
             });
         }
         error:^(RCErrorCode status) {
-            NSLog(@"set error");
+            DebugLog(@"set error");
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setOn:enableNotification];
             });

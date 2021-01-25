@@ -73,12 +73,12 @@
                                     metadata:nil
                              completionBlock:^(NSURL *assetURL, NSError *error) {
                                  if (error != NULL) {
-                                     NSLog(@" save image fail");
+                                     DebugLog(@" save image fail");
                                      [self showAlertController:nil
                                                        message:RCLocalizedString(@"SavePhotoFailed")
                                                    cancelTitle:RCLocalizedString(@"OK")];
                                  } else {
-                                     NSLog(@"save image suceed");
+                                     DebugLog(@"save image suceed");
                                      [self showAlertController:nil
                                                        message:RCLocalizedString(@"SavePhotoSuccess")
                                                    cancelTitle:RCLocalizedString(@"OK")];

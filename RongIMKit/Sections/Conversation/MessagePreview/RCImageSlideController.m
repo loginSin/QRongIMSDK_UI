@@ -514,13 +514,13 @@
                          completionBlock:^(NSURL *assetURL, NSError *error) {
                              if (error != NULL) {
                                  //失败
-                                 NSLog(@" save image fail");
+                                 DebugLog(@" save image fail");
                                  [self showAlertController:nil
                                                    message:RCLocalizedString(@"SavePhotoFailed")
                                                cancelTitle:RCLocalizedString(@"OK")];
                              } else {
                                  //成功
-                                 NSLog(@"save image succeed");
+                                 DebugLog(@"save image succeed");
                                  [self showAlertController:nil
                                                    message:RCLocalizedString(@"SavePhotoSuccess")
                                                cancelTitle:RCLocalizedString(@"OK")];

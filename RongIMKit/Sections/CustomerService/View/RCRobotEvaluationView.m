@@ -48,7 +48,7 @@
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)customIOS7dialogButtonTouchUpInside:(RCCustomIOSAlertView *)alertView
                        clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"Delegate: Button at position %d is clicked on alertView %d.", (int)buttonIndex, (int)[alertView tag]);
+    DebugLog(@"Delegate: Button at position %d is clicked on alertView %d.", (int)buttonIndex, (int)[alertView tag]);
     if (buttonIndex == 1) {
         [self.robotEvaluationViewDelegate robotEvaluateViewCancel:self];
     } else if (buttonIndex == 0) {

@@ -246,7 +246,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"%s======%@", __func__, self);
+    DebugLog(@"%s======%@", __func__, self);
     self.isConversationAppear = YES;
 
     [self.chatSessionInputBarControl containerViewDidAppear];
@@ -287,7 +287,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
     [self quitConversationViewAndClear];
     [[RCReeditMessageManager defaultManager] resetAndInvalidateTimer];
     [self.csUtil stopCSTimer];
-    NSLog(@"%s======%@", __func__, self);
+    DebugLog(@"%s======%@", __func__, self);
 }
 
 #pragma mark - Register Message
@@ -886,7 +886,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
                                                    layout:collectionViewLayout
                                    sizeForItemAtIndexPath:indexPath];
 #pragma clang diagnostic pop
-        NSLog(@"%@", NSStringFromCGSize(_size));
+        DebugLog(@"%@", NSStringFromCGSize(_size));
         _size.height += [self.util referenceExtraHeight:RCUnknownMessageCell.class messageModel:model];
         model.cellSize = _size;
     }
@@ -1817,7 +1817,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 #pragma mark - 点击事件
 //点击cell
 - (void)didTapMessageCell:(RCMessageModel *)model {
-    NSLog(@"%s", __FUNCTION__);
+    DebugLog(@"%s", __FUNCTION__);
     if (nil == model) {
         return;
     }
@@ -2070,7 +2070,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 
 - (void)didTapmessageFailedStatusViewForResend:(RCMessageModel *)model {
     // resending message.
-    NSLog(@"%s", __FUNCTION__);
+    DebugLog(@"%s", __FUNCTION__);
 
     RCMessageContent *content = model.content;
     long msgId = model.messageId;
@@ -2245,7 +2245,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 }
 
 - (void)updateForMessageSendSuccess:(long)messageId content:(RCMessageContent *)content {
-    NSLog(@"message<%ld> send succeeded ", messageId);
+    DebugLog(@"message<%ld> send succeeded ", messageId);
     [self.csUtil startNotSendMessageAlertTimer];
 
     __weak typeof(self) __weakself = self;
@@ -2337,7 +2337,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
                         messageId:(long)messageId
                           content:(RCMessageContent *)content
              ifResendNotification:(bool)ifResendNotification{
-    NSLog(@"message<%ld> send failed error code %d", messageId, (int)nErrorCode);
+    DebugLog(@"message<%ld> send failed error code %d", messageId, (int)nErrorCode);
 
 
     __weak typeof(self) __weakself = self;
@@ -2371,7 +2371,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 }
 
 - (void)updateForMessageSendCanceled:(long)messageId content:(RCMessageContent *)content {
-    NSLog(@"message<%ld> canceled", messageId);
+    DebugLog(@"message<%ld> canceled", messageId);
 
     __weak typeof(self) __weakself = self;
     dispatch_after(
@@ -2813,12 +2813,12 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 
 #pragma mark - 钩子
 - (RCMessageContent *)willSendMessage:(RCMessageContent *)message {
-    NSLog(@"super %s", __FUNCTION__);
+    DebugLog(@"super %s", __FUNCTION__);
     return message;
 }
 
 - (RCMessage *)willAppendAndDisplayMessage:(RCMessage *)message {
-    NSLog(@"super %s", __FUNCTION__);
+    DebugLog(@"super %s", __FUNCTION__);
     return message;
 }
 
@@ -2827,20 +2827,20 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 }
 
 - (void)didSendMessage:(NSInteger)status content:(RCMessageContent *)messageContent {
-    NSLog(@"super %s, %@", __FUNCTION__, messageContent);
+    DebugLog(@"super %s, %@", __FUNCTION__, messageContent);
 }
 
 - (void)didCancelMessage:(RCMessageContent *)messageContent {
-    NSLog(@"super %s, %@", __FUNCTION__, messageContent);
+    DebugLog(@"super %s, %@", __FUNCTION__, messageContent);
 }
 
 - (BOOL)willSelectMessage:(RCMessageModel *)model {
-    NSLog(@"super %s, %@", __FUNCTION__, model);
+    DebugLog(@"super %s, %@", __FUNCTION__, model);
     return YES;
 }
 
 - (BOOL)willCancelSelectMessage:(RCMessageModel *)model {
-    NSLog(@"super %s, %@", __FUNCTION__, model);
+    DebugLog(@"super %s, %@", __FUNCTION__, model);
     return YES;
 }
 
