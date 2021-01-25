@@ -7,6 +7,7 @@
 //
 
 #import "RongIMKit.h"
+
 @class RCSightMessageProgressView;
 @interface RCSightMessageCell : RCMessageCell
 

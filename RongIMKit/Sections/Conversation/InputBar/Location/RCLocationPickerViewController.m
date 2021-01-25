@@ -258,7 +258,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"获取用户位置出错： %@", [error description]);
+    DebugLog(@"获取用户位置出错： %@", [error description]);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -267,7 +267,7 @@
         [self startTrackingLocation];
         break;
     case kCLAuthorizationStatusAuthorizedWhenInUse:
-        NSLog(@"Got authorization, start tracking location");
+        DebugLog(@"Got authorization, start tracking location");
         [self startTrackingLocation];
         break;
     case kCLAuthorizationStatusNotDetermined:

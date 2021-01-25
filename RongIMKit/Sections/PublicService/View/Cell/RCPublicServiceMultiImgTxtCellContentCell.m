@@ -90,7 +90,7 @@
 }
 
 - (void)onTaped:(id)sender {
-    NSLog(@"ontaped:");
+    DebugLog(@"ontaped:");
     [self.publicServiceDelegate didTapUrlInPublicServiceMessageCell:self.richContent.url model:nil];
 }
 

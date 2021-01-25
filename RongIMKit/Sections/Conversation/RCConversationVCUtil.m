@@ -272,7 +272,7 @@
             success:^(long messageId) {
             }
             error:^(RCErrorCode nErrorCode, long messageId) {
-                NSLog(@"error");
+                DebugLog(@"error");
             }];
     }
 }

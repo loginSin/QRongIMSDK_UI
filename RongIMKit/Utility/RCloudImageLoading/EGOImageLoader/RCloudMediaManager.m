@@ -65,7 +65,7 @@
         int bytesPerRow = bytesPerPixel * destResolution.width;
         void *destBitmapData = malloc(bytesPerRow * destResolution.height);
         if (destBitmapData == NULL) {
-            NSLog(@"failed to allocate space for the output image!");
+            DebugLog(@"failed to allocate space for the output image!");
             CGColorSpaceRelease(colorSpace);
             completionBlock(nil, YES);
             return;
@@ -107,7 +107,7 @@
         destTile.size.height += destSeemOverlap;
 
         for (NSInteger y = 0; y < iterations; ++y) {
-            NSLog(@"iteration %ld of %d", (long)y + 1, iterations);
+            DebugLog(@"iteration %ld of %d", (long)y + 1, iterations);
             sourceTile.origin.y = y * sourceTileHeightMinusOverlap + sourceSeemOverlap;
             destTile.origin.y =
                 (destResolution.height) - ((y + 1) * sourceTileHeightMinusOverlap * imageScale + destSeemOverlap);
@@ -125,7 +125,7 @@
             if (y < (iterations - 1) && progressBlock) {
                 CGImageRef destImageRef = CGBitmapContextCreateImage(_destContext);
                 if (destImageRef == NULL) {
-                    NSLog(@"destImageRef is null.");
+                    DebugLog(@"destImageRef is null.");
                     CGContextRelease(_destContext);
                     free(destBitmapData);
                     return;
@@ -137,7 +137,7 @@
         }
         CGImageRef destImageRef = CGBitmapContextCreateImage(_destContext);
         if (destImageRef == NULL) {
-            NSLog(@"destImageRef is null.");
+            DebugLog(@"destImageRef is null.");
             CGContextRelease(_destContext);
             free(destBitmapData);
             return;
@@ -172,7 +172,7 @@
     int bytesPerRow = bytesPerPixel * destResolution.width;
     void *destBitmapData = malloc(bytesPerRow * destResolution.height);
     if (destBitmapData == NULL) {
-        NSLog(@"failed to allocate space for the output image!");
+        DebugLog(@"failed to allocate space for the output image!");
         CGColorSpaceRelease(colorSpace);
         return [UIImage new];
     };
@@ -212,7 +212,7 @@
     destTile.size.height += destSeemOverlap;
 
     for (NSInteger y = 0; y < iterations; ++y) {
-        NSLog(@"iteration %ld of %d", (long)y + 1, iterations);
+        DebugLog(@"iteration %ld of %d", (long)y + 1, iterations);
         sourceTile.origin.y = y * sourceTileHeightMinusOverlap + sourceSeemOverlap;
         destTile.origin.y =
             (destResolution.height) - ((y + 1) * sourceTileHeightMinusOverlap * imageScale + destSeemOverlap);

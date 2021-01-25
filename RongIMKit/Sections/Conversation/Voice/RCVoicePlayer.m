@@ -42,7 +42,7 @@ static RCVoicePlayer *rcVoicePlayerHandler = nil;
 }
 - (void)setDefaultAudioSession:(NSString *)category {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    NSLog(@"[RongIMKit]: [audioSession category ] %@", [audioSession category]);
+    DebugLog(@"[RongIMKit]: [audioSession category ] %@", [audioSession category]);
     //    //默认情况下扬声器播放，如果当前audioSession状态是AVAudioSessionCategoryRecord，证明正在录音，不要设置category
     //    if(![[audioSession category ] isEqualToString:AVAudioSessionCategoryRecord])
     [audioSession setCategory:category
@@ -58,10 +58,10 @@ static RCVoicePlayer *rcVoicePlayerHandler = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([[UIDevice currentDevice] proximityState] == YES) {
                 self.playerCategory = AVAudioSessionCategoryPlayAndRecord;
-                NSLog(@"[RongIMKit]: Device is close to user");
+                DebugLog(@"[RongIMKit]: Device is close to user");
                 [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
             } else {
-                NSLog(@"[RongIMKit]: Device is not close to user");
+                DebugLog(@"[RongIMKit]: Device is not close to user");
                 self.playerCategory = AVAudioSessionCategoryPlayback;
                 [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
             }
@@ -95,7 +95,7 @@ static RCVoicePlayer *rcVoicePlayerHandler = nil;
 
 //停止播放
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    NSLog(@"%s", __FUNCTION__);
+    DebugLog(@"%s", __FUNCTION__);
 
     self.isPlaying = self.audioPlayer.playing;
     [self disableSystemProperties];
@@ -150,7 +150,7 @@ static RCVoicePlayer *rcVoicePlayerHandler = nil;
 }
 //播放错误
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error {
-    NSLog(@"%s", __FUNCTION__);
+    DebugLog(@"%s", __FUNCTION__);
     // do something
     self.isPlaying = self.audioPlayer.playing;
     [self disableSystemProperties];
@@ -183,19 +183,19 @@ static RCVoicePlayer *rcVoicePlayerHandler = nil;
     BOOL ready = NO;
     if (!error) {
 
-        NSLog(@"[RongIMKit]: init AudioPlayer %@", error);
+        DebugLog(@"[RongIMKit]: init AudioPlayer %@", error);
 
         ready = [self.audioPlayer prepareToPlay];
-        NSLog(@"[RongIMKit]: prepare audio player %@", ready ? @"success" : @"failed");
+        DebugLog(@"[RongIMKit]: prepare audio player %@", ready ? @"success" : @"failed");
         ready = [self.audioPlayer play];
-        NSLog(@"[RongIMKit]: async play is %@", ready ? @"success" : @"failed");
+        DebugLog(@"[RongIMKit]: async play is %@", ready ? @"success" : @"failed");
         if (ready) {
             [self sendPlayStartNotification];
         }
     }
     self.isPlaying = self.audioPlayer.playing;
-    NSLog(@"self.isPlaying > %d", self.isPlaying);
-    NSLog(@"[RongIMKit]: [audioSession category ] %@", [[AVAudioSession sharedInstance] category]);
+    DebugLog(@"self.isPlaying > %d", self.isPlaying);
+    DebugLog(@"[RongIMKit]: [audioSession category ] %@", [[AVAudioSession sharedInstance] category]);
     return ready;
 }
 

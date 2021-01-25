@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #if __has_include(<RongIMKit/RongIMKit.h>)
+
 /// IMKit核心类
 #import <RongIMKit/RCIM.h>
 #import <RongIMKit/RCIM+Deprecated.h>

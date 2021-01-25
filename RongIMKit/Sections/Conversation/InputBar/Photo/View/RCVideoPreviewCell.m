@@ -61,7 +61,7 @@
         options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
         options.progressHandler =
             ^(double progress, NSError *_Nullable error, BOOL *_Nonnull stop, NSDictionary *_Nullable info) {
-                NSLog(@"PHVideoRequestOptions progressHandler progress %f", progress);
+                DebugLog(@"PHVideoRequestOptions progressHandler progress %f", progress);
             };
         [[PHImageManager defaultManager]
             requestPlayerItemForVideo:asset

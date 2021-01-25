@@ -84,7 +84,7 @@
 
 - (void)didTapMessageContentView{
     RCRichContentMessage *richContentMsg = (RCRichContentMessage *)self.model.content;
-    NSLog(@"%s, URL > %@", __FUNCTION__, richContentMsg.imageURL);
+    DebugLog(@"%s, URL > %@", __FUNCTION__, richContentMsg.imageURL);
     if (nil != richContentMsg.url) {
         if ([self.delegate respondsToSelector:@selector(didTapUrlInMessageCell:model:)]) {
             [self.delegate didTapUrlInMessageCell:richContentMsg.url model:self.model];

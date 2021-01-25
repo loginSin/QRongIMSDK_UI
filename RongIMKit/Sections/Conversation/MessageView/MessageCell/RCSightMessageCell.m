@@ -97,7 +97,7 @@ extern NSString *const RCKitDispatchDownloadMediaNotification;
                 CGRectMake(0, 0, durationLabelBgFrame.size.width-5, durationLabelBgFrame.size.height);
         }
     } else {
-        NSLog(@"[RongIMKit]: RCMessageModel.content is NOT RCsightMessage object");
+        DebugLog(@"[RongIMKit]: RCMessageModel.content is NOT RCsightMessage object");
     }
 
     [self updateStatusContentView:self.model];
@@ -255,7 +255,7 @@ extern NSString *const RCKitDispatchDownloadMediaNotification;
     RCMessageCellNotificationModel *notifyModel = notification.object;
     NSInteger progress = notifyModel.progress;
     if (self.model.messageId == notifyModel.messageId) {
-        NSLog(@"messageCellUpdateSendingStatusEvent >%@ ", notifyModel.actionName);
+        DebugLog(@"messageCellUpdateSendingStatusEvent >%@ ", notifyModel.actionName);
         if ([notifyModel.actionName isEqualToString:CONVERSATION_CELL_STATUS_SEND_BEGIN]) {
             [self.progressView startIndeterminateAnimation];
             [self.progressView setHidden:NO];
