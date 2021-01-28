@@ -39,9 +39,10 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'IFly' do |fly|
-  	fly.resources = "RongSticker/Resource/*.*"
+  	fly.resources = "RongiFlyKit/Resource/*.*"
     fly.source_files = 'RongiFlyKit/**/*.{h,m}'
     fly.dependency 'QRongIMSDK_UI/IMKit'
+    fly.vendored_frameworks = "RongiFlyKit/Engine/iflyMSC.framework"
   end
 
 
