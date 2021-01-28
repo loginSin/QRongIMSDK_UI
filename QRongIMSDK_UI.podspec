@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'CallKit' do |ck|
     ck.source_files = 'RongCallKit/**/*.{h,m,c}'
-    fly.resources = "RongCallKit/Resources/*.*"
+    ck.resources = "RongCallKit/Resources/*.*"
     ck.dependency 'QRongIMSDK_UI/IMKit'
     ck.dependency 'RongCloudRTC/RongCallLib','5.0.0'
   end
