@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "QRongIMSDK_UI"
-  s.version      = "0.5.0"
+  s.version      = "0.6.0"
   s.summary      = "RongCloud IM SDK.(如果看不到最新版本，请使用 pod repo update 命令更新一下本地pod仓库，从 2.9.0 版本开始这里不再包含 CallKit 和 CallLib 类库的管理，音视频服务升级为融云自有音视频，2.9.0 版本之前用户请根据站内信提示更新)"
 
 
@@ -52,5 +52,9 @@ Pod::Spec.new do |s|
     fly.vendored_frameworks = "RongiFlyKit/Engine/iflyMSC.framework"
   end
 
+  s.subspec 'ContactCard' do |cc|
+    cc.source_files = 'RongContactCard/**/*.{h,m,c}'
+    cc.dependency 'QRongIMSDK_UI/IMKit'
+  end
 
 end
