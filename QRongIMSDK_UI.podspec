@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "QRongIMSDK_UI"
-  s.version      = "0.3.0"
+  s.version      = "0.4.0"
   s.summary      = "RongCloud IM SDK.(如果看不到最新版本，请使用 pod repo update 命令更新一下本地pod仓库，从 2.9.0 版本开始这里不再包含 CallKit 和 CallLib 类库的管理，音视频服务升级为融云自有音视频，2.9.0 版本之前用户请根据站内信提示更新)"
 
 
@@ -22,12 +22,13 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.subspec 'IMKit' do |kit|
-    kit.resources = "Resource/*.*"
+    kit.resources = "RongIMKit/Resource/*.*"
     kit.source_files = 'RongIMKit/**/*.{h,m,c}'
     kit.dependency 'RongCloudIM/IMLib','5.0.0'
   end
 
   s.subspec 'Sticker' do |rs|
+  	rs.resources = "RongSticker/Resource/*.*"
     rs.source_files = 'RongSticker/**/*.{h,m,c}'
     rs.dependency 'QRongIMSDK_UI/IMKit'
   end
