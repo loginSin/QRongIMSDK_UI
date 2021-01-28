@@ -24,6 +24,7 @@ Pod::Spec.new do |s|
   s.subspec 'IMKit' do |kit|
     kit.resources = "RongIMKit/Resource/*.*"
     kit.source_files = 'RongIMKit/**/*.{h,m,c}'
+    kit.frameworks = "AssetsLibrary", "MapKit", "ImageIO", "CoreLocation", "SystemConfiguration", "QuartzCore", "OpenGLES", "CoreVideo", "CoreTelephony", "CoreMedia", "CoreAudio", "CFNetwork", "AudioToolbox", "AVFoundation", "UIKit", "CoreGraphics", "SafariServices"
     kit.dependency 'RongCloudIM/IMLib','5.0.0'
   end
 
@@ -39,7 +40,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'IFly' do |fly|
-  	fly.resources = "RongiFlyKit/Resource/*.*"
+    fly.libraries = "z"
+    fly.frameworks = "AddressBook", "SystemConfiguration", "CoreTelephony", "CoreServices", "Contacts"
+    fly.resources = "RongiFlyKit/Resource/*.*"
     fly.source_files = 'RongiFlyKit/**/*.{h,m}'
     fly.dependency 'QRongIMSDK_UI/IMKit'
     fly.vendored_frameworks = "RongiFlyKit/Engine/iflyMSC.framework"
