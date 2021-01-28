@@ -45,9 +45,4 @@ Pod::Spec.new do |s|
   end
 
 
-  s.subspec 'ContactCard' do |cc|
-    cc.source_files = 'RongContactCard/**/*.{h,m}'
-    cc.dependency 'QRongIMSDK_UI/IMKit'
-  end
-
 end
