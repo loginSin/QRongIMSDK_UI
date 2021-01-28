@@ -11,7 +11,7 @@
 #import "RCChatSessionInputBarControl.h"
 #import "RCExtensionService.h"
 #import "RCKitConfig.h"
-#define TextViewLineHeight 19.f              //输入框每行文字高度
+#define TextViewLineHeight 20.f              //输入框每行文字高度
 #define TextViewSpaceHeight_LessThanMax 17.f //输入框小于最大行时除文字外上下空隙高度
 #define TextViewSpaceHeight 13.f             //输入框大于等于最大行时除文字外上下空隙高度
 #define TextViewRectY 7
@@ -79,13 +79,13 @@
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-     NSLog(@"%s, %@", __FUNCTION__, textView);
+     DebugLog(@"%s, %@", __FUNCTION__, textView);
     self.textViewBeginEditing = YES;
     return YES;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    NSLog(@"%s, %@", __FUNCTION__, textView.text);
+    DebugLog(@"%s, %@", __FUNCTION__, textView.text);
     self.textViewBeginEditing = NO;
     // filter the space
 }
