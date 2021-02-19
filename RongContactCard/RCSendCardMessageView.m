@@ -414,7 +414,7 @@ NSString *const RCCC_CardMessageSend = @"RCCC_CardMessageSend";
         [RCContactCardKit shareInstance].groupDataSource &&
         [[RCContactCardKit shareInstance].groupDataSource respondsToSelector:@selector(getGroupInfoByGroupId:result:)];
     if (!result) {
-        NSLog(@"Error:在群组中发送名片消息必须实现RCContactCardKit的RCCCGroupDataSource代理方法");
+        NSLog(@"Error:Send contact card message in group, must be implemented  RCCCGroupDataSource of RCContactCardKit");
     }
     return result;
 }

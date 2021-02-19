@@ -602,7 +602,7 @@ static RCIM *__rongUIKit = nil;
         if (errorBlock) {
             errorBlock(INVALID_PARAMETER, 0);
         }
-        NSLog(@"开发者接口调用时传入的参数错误");
+        NSLog(@"Parameters error");
         return nil;
     }
     content = [self beforeSendMessage:content];
@@ -664,7 +664,7 @@ static RCIM *__rongUIKit = nil;
         if (errorBlock) {
             errorBlock(INVALID_PARAMETER, message);
         }
-        NSLog(@"开发者接口调用时传入的参数错误");
+        NSLog(@"Parameters error");
         return nil;
     }
     message.content = [self beforeSendMessage:message.content];
@@ -723,7 +723,7 @@ static RCIM *__rongUIKit = nil;
         if (errorBlock) {
             errorBlock(INVALID_PARAMETER, 0);
         }
-        NSLog(@"开发者接口调用时传入的参数错误");
+        NSLog(@"Parameters error");
         return nil;
     }
     content = [self beforeSendMessage:content];
@@ -853,7 +853,7 @@ static RCIM *__rongUIKit = nil;
         if (errorBlock) {
             errorBlock(INVALID_PARAMETER, 0);
         }
-        NSLog(@"开发者接口调用时传入的参数错误");
+        NSLog(@"Parameters error");
         return nil;
     }
     content = [self beforeSendMessage:content];
@@ -937,7 +937,7 @@ static RCIM *__rongUIKit = nil;
         if (errorBlock) {
             errorBlock(INVALID_PARAMETER, message);
         }
-        NSLog(@"开发者接口调用时传入的参数错误");
+        NSLog(@"Parameters error");
         return nil;
     }
     message.content = [self beforeSendMessage:message.content];

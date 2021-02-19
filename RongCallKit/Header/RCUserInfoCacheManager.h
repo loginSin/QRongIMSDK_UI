@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RongIMKitHeader.h"
+#import "RongCallKitAdaptiveHeader.h"
 @class RCUserInfoCacheDBHelper,RCPublicServiceProfile;
 
 //消息分发

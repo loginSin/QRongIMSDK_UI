@@ -175,7 +175,7 @@
     NSLog(@"resultFromJson=%@", resultFromJson);
     [_result appendString:resultFromJson];
     if (isLast) {
-        NSLog(@"听写结果(json)：%@", self.result);
+        NSLog(@"Dictation results(json)：%@", self.result);
         if ([self.result isEqualToString:@"。"]) {
             self.result = [NSMutableString new];
         }

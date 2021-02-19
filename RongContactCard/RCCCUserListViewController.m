@@ -102,7 +102,7 @@
     BOOL result = [RCContactCardKit shareInstance].contactsDataSource &&
                   [[RCContactCardKit shareInstance].contactsDataSource respondsToSelector:@selector(getAllContacts:)];
     if (!result) {
-        NSLog(@"Error:显示名片消息联系人列表必须实现RCContactCardKit的RCCCContactsDataSource的代理方法");
+        NSLog(@"Error: Display contact card list must be implemented  RCCCContactsDataSource of RCContactCardKit");
     }
     return result;
 }

@@ -636,9 +636,9 @@ AVCaptureVideoOrientation orientationBaseOnAcceleration(CMAcceleration accelerat
                 }
                     completionHandler:^(BOOL success, NSError *_Nullable error) {
                         if (success) {
-                            NSLog(@"RongIMKit 已将小视频保存至相册");
+                            NSLog(@"RongIMKit small video saved to album");
                         } else {
-                            NSLog(@"RongIMKit 未能保存小视频到相册");
+                            NSLog(@"RongIMKit failed to save small video to album");
                         }
                     }];
             }

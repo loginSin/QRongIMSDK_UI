@@ -82,7 +82,6 @@ extern NSString *const RCKitDispatchDownloadMediaNotification;
 @property (nonatomic, strong) RCMessageModel *currentSelectedModel;
 
 #pragma mark view
-@property (nonatomic, strong) UIImageView *unreadRightBottomIcon;
 @property (nonatomic, strong) UITapGestureRecognizer *resetBottomTapGesture;
 @property (nonatomic, strong) RCConversationCollectionViewHeader *collectionViewHeader;
 
@@ -142,7 +141,10 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
     self.dataSource = [[RCConversationDataSource alloc] init:self];
     self.util = [[RCConversationVCUtil alloc] init:self];
     self.csUtil = [[RCConversationCSUtil alloc] init:self];
-    
+    self.enableUnreadMentionedIcon = YES;
+    self.defaultLocalHistoryMessageCount = 10;
+    self.defaultRemoteHistoryMessageCount = 10;
+
     [self registerNotification];
 }
 
@@ -233,11 +235,12 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
         [self.unReadButton removeFromSuperview];
         self.unReadMessage = 0;
     }
-    if (self.unReadMessage > 10 && self.enableUnreadMessageIcon == YES && !self.unReadButton.selected) {
+    if (self.unReadMessage > self.defaultLocalHistoryMessageCount && self.enableUnreadMessageIcon == YES && !self.unReadButton.selected) {
         [self setupUnReadMessageView];
     }
     
     [self.dataSource scrollToSuitablePosition];
+    [self.dataSource setupUnReadMentionedButton];
     
     [[RongIMKitExtensionManager sharedManager] extensionViewWillAppear:self.conversationType
                                                               targetId:self.targetId
@@ -258,7 +261,6 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
     [super viewWillDisappear:animated];
     [self.util syncReadStatus];
     
-    [self.dataSource clearUnreadMentionedMessages];
     [self.conversationMessageCollectionView removeGestureRecognizer:self.resetBottomTapGesture];
     [[RCSystemSoundPlayer defaultPlayer] resetIgnoreConversation];
     [self stopPlayingVoiceMessage];
@@ -415,6 +417,13 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
     [self.view addSubview:self.unReadButton];
     [self.unReadButton bringSubviewToFront:self.conversationMessageCollectionView];
     [self.util adaptUnreadButtonSize:self.unReadMessageLabel];
+}
+
+- (void)tapRightTopUnReadMentionedButton:(UIButton *)sender {
+    if (self.dataSource.unreadMentionedMessages.count <= 0) {
+        return;
+    }
+    [self.dataSource tapRightTopUnReadMentionedButton:sender];
 }
 
 - (void)loadRemainMessageAndScrollToBottom:(BOOL)animated {
@@ -586,7 +595,14 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
             [RCVoicePlayer defaultPlayer].messageId == recalledMsgId) {
             [[RCVoicePlayer defaultPlayer] stopPlayVoice];
         }
-        [__blockSelf.dataSource didRecallMessage:recalledMsgId];
+        RCMessage *recalledMsg = [[RCIMClient sharedRCIMClient] getMessage:recalledMsgId];
+        [__blockSelf.dataSource didRecallMessage:recalledMsg];
+        if (self.enableUnreadMentionedIcon && recalledMsg.conversationType == self.conversationType &&
+            [recalledMsg.targetId isEqual:self.targetId] &&
+            ![self isRemainMessageExisted] && self.dataSource.unreadMentionedMessages.count != 0) {
+            //遍历删除对应的@消息
+            [self.dataSource removeMentionedMessage:recalledMsgId];
+        }
         if (self.referencingView && self.referencingView.referModel.messageId == recalledMsgId) {
             [self.chatSessionInputBarControl resetToDefaultStatus];
             [self dismissReferencingView:self.referencingView];
@@ -823,6 +839,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
                withObject:indexPath];
     //接口向后兼容 --]]
     [self willDisplayMessageCell:cell atIndexPath:indexPath];
+    [self.dataSource removeMentionedMessage:model.messageId];
     return cell;
 }
 
@@ -925,7 +942,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
     CGFloat height = 0;
     // 当加载本地历史消息小于 10 时，allMessagesAreLoaded 为 NO，此时高度设置为 0，否则会向下偏移 COLLECTION_VIEW_REFRESH_CONTROL_HEIGHT 的高度
     if(!self.dataSource.allMessagesAreLoaded) {
-        if (self.conversationDataRepository.count < 10) {
+        if (self.conversationDataRepository.count < self.defaultLocalHistoryMessageCount) {
             height = 0;
         } else {
             height = COLLECTION_VIEW_REFRESH_CONTROL_HEIGHT;
@@ -1570,7 +1587,7 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 - (void)recallMessage:(long)messageId {
     RCMessage *msg = [[RCIMClient sharedRCIMClient] getMessage:messageId];
     if (msg.messageDirection != MessageDirection_SEND && msg.sentStatus != SentStatus_SENT) {
-        NSLog(@"错误，只有发送成功的消息才能撤回！！！");
+        NSLog(@"Error，only successfully sent messages can be recalled！！！");
         return;
     }
 
@@ -2058,7 +2075,6 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 }
 
 - (void)tapRightTopMsgUnreadButton:(UIButton *)sender {
-    [self.unReadButton removeFromSuperview];
     //表明已点击过UnReadButton，加载了新消息，用来判断已加载了多少新消息
     self.unReadButton.selected = YES;
     [self.dataSource tapRightTopMsgUnreadButton];
@@ -2702,6 +2718,24 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
     _defaultHistoryMessageCountOfChatRoom = defaultHistoryMessageCountOfChatRoom;
 }
 
+- (void)setdefaultLocalHistoryMessageCount:(int)defaultLocalHistoryMessageCount {
+    if (defaultLocalHistoryMessageCount > 100) {
+        defaultLocalHistoryMessageCount = 100;
+    }else if (defaultLocalHistoryMessageCount < 0){
+        defaultLocalHistoryMessageCount = 10;
+    }
+    _defaultLocalHistoryMessageCount = defaultLocalHistoryMessageCount;
+}
+
+- (void)setDefaultRemoteHistoryMessageCount:(int)defaultRemoteHistoryMessageCount {
+    if (defaultRemoteHistoryMessageCount > 100) {
+        defaultRemoteHistoryMessageCount = 100;
+    }else if(defaultRemoteHistoryMessageCount < 0){
+        defaultRemoteHistoryMessageCount = 10;
+    }
+    _defaultRemoteHistoryMessageCount = defaultRemoteHistoryMessageCount;
+}
+
 //设置头像样式
 - (void)setMessageAvatarStyle:(RCUserAvatarStyle)avatarStyle {
     RCKitConfigCenter.ui.globalMessageAvatarStyle = avatarStyle;
@@ -2983,8 +3017,40 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
         _unReadMessageLabel.font = [[RCKitConfig defaultConfig].font fontOfFourthLevel];
         _unReadMessageLabel.textColor = RCDYCOLOR(0x111f2c, 0x0099ff);
         _unReadMessageLabel.textAlignment = NSTextAlignmentCenter;
+        _unReadMessageLabel.tag = 1001;
     }
     return _unReadMessageLabel;
+}
+
+- (UIButton *)unReadMentionedButton {
+    if (_unReadMentionedButton == nil) {
+        _unReadMentionedButton = [UIButton new];
+        CGFloat extraHeight = 0;
+        if ([self getSafeAreaExtraBottomHeight] > 0) {
+            extraHeight = 24; // iphonex 的导航由20变成了44，需要额外加24
+        }
+        
+        _unReadMentionedButton.frame = CGRectMake(0, [RCKitUtility getWindowSafeAreaInsets].top + self.navigationController.navigationBar.frame.size.height + 14 +6, 0, 42);
+        [_unReadMentionedButton setBackgroundImage:[RCKitUtility imageNamed:@"up" ofBundle:@"RongCloud.bundle"]
+                                          forState:UIControlStateNormal];
+        
+        [_unReadMentionedButton addTarget:self action:@selector(tapRightTopUnReadMentionedButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_unReadMentionedButton];
+        [_unReadMentionedButton addSubview:self.unReadMentionedLabel];
+        [_unReadMentionedButton bringSubviewToFront:self.conversationMessageCollectionView];
+    }
+    return _unReadMentionedButton;
+}
+
+- (UILabel *)unReadMentionedLabel {
+    if (!_unReadMentionedLabel) {
+        _unReadMentionedLabel = [[UILabel alloc] initWithFrame:CGRectMake(17 + 9 + 6, 0, 0, self.unReadMentionedButton.frame.size.height)];
+        _unReadMentionedLabel.font = [[RCKitConfig defaultConfig].font fontOfFourthLevel];
+        _unReadMentionedLabel.textColor = RCDYCOLOR(0x111f2c, 0x0099ff);
+        _unReadMentionedLabel.textAlignment = NSTextAlignmentCenter;
+        _unReadMentionedLabel.tag = 1002;
+    }
+    return _unReadMentionedLabel;
 }
 
 - (UIToolbar *)messageSelectionToolbar {

@@ -9,7 +9,7 @@
 #import "RCCallMultiCallUserCell.h"
 #import "RCCallKitUtility.h"
 #import "RCloudImageView.h"
-#import "RongIMKitHeader.h"
+#import "RongCallKitAdaptiveHeader.h"
 
 @interface RCCallMultiCallUserCell ()
 

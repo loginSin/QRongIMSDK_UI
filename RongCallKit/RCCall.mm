@@ -17,7 +17,7 @@
 #import "RCCallVideoMultiCallViewController.h"
 #import "RCUserInfoCacheManager.h"
 #import "RCCXCall.h"
-#import "RongIMKitHeader.h"
+#import "RongCallKitAdaptiveHeader.h"
 #import <AVFoundation/AVFoundation.h>
 
 #if __IPHONE_10_0
