@@ -280,12 +280,12 @@ static NSString *const rcUnknownMessageCellIndentifier = @"rcUnknownMessageCellI
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     if (!self.navigationController || ![self.navigationController.viewControllers containsObject:self]) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self.dataSource cancelAppendMessageQueue];
     }
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self quitConversationViewAndClear];
     [[RCReeditMessageManager defaultManager] resetAndInvalidateTimer];
     [self.csUtil stopCSTimer];
