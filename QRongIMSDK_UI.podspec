@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "QRongIMSDK_UI"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "RongCloud UI SDK SourceCode."
 
 
