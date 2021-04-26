@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'RongSticker' do |rs|
-  	rs.resources = "Resources/RongSticker.bundle", "Resources/en.lproj", "Resources/zh-Hans.lproj", "Resources/ar.lproj"
+  	rs.resources = "Resources/RongSticker.bundle"
     rs.source_files = 'Sticker/RongSticker.h','Sticker/**/*.{h,m,c}'
     rs.dependency 'QRongIMSDK_UI/IMKit'
   end
@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'RongCallKit' do |ck|
     ck.source_files = 'CallKit/RongCallKit.h','CallKit/**/*.{h,m,mm}'
-    ck.resources = "Resources/RongCallKit.bundle", "Resources/en.lproj", "Resources/zh-Hans.lproj", "Resources/ar.lproj"
+    ck.resources = "Resources/RongCallKit.bundle"
     ck.dependency 'QRongIMSDK_UI/IMKit'
     ck.dependency 'RongCloudRTC/RongCallLib','5.0.0'
   end
