@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "QRongIMSDK_UI"
-  s.version      = "1.1.1"
+  s.version      = "1.1.2"
   s.summary      = "RongCloud UI SDK SourceCode."
 
 
@@ -26,14 +26,14 @@ Pod::Spec.new do |s|
   s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   s.subspec 'IMKit' do |kit|
-    kit.resources = "IMKit/Resource/*.*"
+    kit.resources = "Resources/RongCloud.bundle", "Resources/en.lproj", "Resources/zh-Hans.lproj", "Resources/ar.lproj", "Resources/Emoji.plist", "Resources/RCColor.plist"
     kit.source_files = 'IMKit/RongIMKit.h','IMKit/**/*.{h,m,c}'
     kit.frameworks = "AssetsLibrary", "MapKit", "ImageIO", "CoreLocation", "SystemConfiguration", "QuartzCore", "OpenGLES", "CoreVideo", "CoreTelephony", "CoreMedia", "CoreAudio", "CFNetwork", "AudioToolbox", "AVFoundation", "UIKit", "CoreGraphics", "SafariServices"
     kit.dependency 'RongCloudIM/IMLib','5.0.0'
   end
 
   s.subspec 'RongSticker' do |rs|
-  	rs.resources = "Sticker/Resource/*.*"
+  	rs.resources = "Resources/RongSticker.bundle", "Resources/en.lproj", "Resources/zh-Hans.lproj", "Resources/ar.lproj"
     rs.source_files = 'Sticker/RongSticker.h','Sticker/**/*.{h,m,c}'
     rs.dependency 'QRongIMSDK_UI/IMKit'
   end
@@ -46,7 +46,7 @@ Pod::Spec.new do |s|
   s.subspec 'IFly' do |fly|
     fly.libraries = "z"
     fly.frameworks = "AddressBook", "SystemConfiguration", "CoreTelephony", "CoreServices", "Contacts"
-    fly.resources = "iFlyKit/Resource/*.*"
+    fly.resources = "Resources/RongCloudiFly.bundle"
     fly.source_files = 'iFlyKit/RongiFlyKit.h','iFlyKit/**/*.{h,m}'
     fly.dependency 'QRongIMSDK_UI/IMKit'
     fly.vendored_frameworks = "iFlyKit/Engine/iflyMSC.framework"
@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'RongCallKit' do |ck|
     ck.source_files = 'CallKit/RongCallKit.h','CallKit/**/*.{h,m,mm}'
-    ck.resources = "CallKit/Resources/*.*"
+    ck.resources = "Resources/RongCallKit.bundle", "Resources/en.lproj", "Resources/zh-Hans.lproj", "Resources/ar.lproj"
     ck.dependency 'QRongIMSDK_UI/IMKit'
     ck.dependency 'RongCloudRTC/RongCallLib','5.0.0'
   end
